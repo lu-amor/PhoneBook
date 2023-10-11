@@ -14,6 +14,15 @@ namespace Library
 
         public Contact Owner { get; }
 
+        public Contact AddContact(string Name, string Phone, string Email)
+        {
+            Contact contact1 = new Contact(Name);
+            contact1.SetPhone(Phone);
+            contact1.SetEmail(Email);
+            this.persons.Add(contact1);
+            return contact1;
+        }
+
         public List<Contact> Search(string[] names)
         {
             List<Contact> result = new List<Contact>();
