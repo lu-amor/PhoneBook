@@ -16,7 +16,7 @@ namespace Program
             Phonebook pb = new Phonebook(dueño);
 
             // Agregar contactos a la lista
-            pb.AddContact("Felipe", "098313984", "me@felieppe.com");
+            pb.AddContact("Felipe", "+59898313984", "me@felieppe.com");
             pb.AddContact("Nombre de contacto", "Teléfono", "E-mail");
             pb.AddContact("Nombre de contacto", "Teléfono", "E-mail");
 
@@ -29,8 +29,10 @@ namespace Program
             Contact to = pb.Search(search)[0];
             Message msg = wac.CreateMessage(dueño, to);
 
-            msg.Text = "Hola!!";
-            wac.Send(msg);
+            if (msg != null) {
+                msg.Text = "Hola!!";
+                wac.Send(msg);
+            } else { Console.WriteLine("Ha ocurrido un error al intentar enviar un mensaje por Whatsapp"); }
 
             // Enviar un SMS a algunos contactos
         }
