@@ -1,4 +1,5 @@
 ﻿using System;
+using WhatsAppApiUCU;
 using Library;
 
 namespace Program
@@ -8,8 +9,8 @@ namespace Program
         static void Main(string[] args)
         {
             // Crear el contacto dueño
-            Contact dueño = new Contact("Nombre de dueño");
-            dueño.SetPhone("Teléfono");
+            Contact dueño = new Contact("Lucía");
+            dueño.SetPhone("093565873");
             dueño.SetEmail("E-mail");
 
             // Crear la lista de contactos
@@ -17,7 +18,7 @@ namespace Program
 
             // Agregar contactos a la lista
             pb.AddContact("Felipe", "+59898313984", "me@felieppe.com");
-            pb.AddContact("Nombre de contacto", "Teléfono", "E-mail");
+            pb.AddContact("twilio", "+1(415)523-8886", "E-mail");
             pb.AddContact("Nombre de contacto", "Teléfono", "E-mail");
 
             // Enviar un correo a algunos contactos
@@ -25,14 +26,8 @@ namespace Program
             // Enviar un WhatsApp a algunos contactos
             WhatsAppChannel wac = new WhatsAppChannel();
 
-            string[] search = new string[] {"Felipe"};
-            Contact to = pb.Search(search)[0];
-            Message msg = wac.CreateMessage(dueño, to);
-
-            if (msg != null) {
-                msg.Text = "Hola!!";
-                wac.Send(msg);
-            } else { Console.WriteLine("Ha ocurrido un error al intentar enviar un mensaje por Whatsapp"); }
+            var whatsApp = new WhatsAppApi();
+            whatsApp.Send("+59893565873", "Hey! I'm using WhatsApp");
 
             // Enviar un SMS a algunos contactos
         }
